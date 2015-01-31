@@ -51,13 +51,30 @@
 )
 
 #+end_src
-* Increase default font size
+* Keystrokes to change font size
 
 #+BEGIN_SRC emacs-lisp
-;;   (set-default-font "Monospace 20")
+(global-set-key (kbd "<f11>")   (lambda () (interactive) (set-default-font "Monospace 12")))
+(global-set-key (kbd "<f12>")   (lambda () (interactive) (set-default-font "Monospace 20")))
+(global-set-key (kbd "<f10>")   'set-default-font )
+(set-default-font  "Lobster Two-28")
+
 #+END_SRC
 
 #+RESULTS:
+* Backround Themes Keyboard Shortcuts
+#+BEGIN_SRC emacs-lisp
+  (defvar themecount 0)
+  (global-set-key (kbd "<f9>")   (lambda () (interactive) (progn
+                                              (setq themecount  (% (+ themecount 1) 13))        
+                                              (load-theme  (nth themecount (list 'adwaita 'deeper-blue 'dichromacy 'light-blue 'manoj-dark 'misterioso 'tango 'tango-dark 'tsdh-dark 'tsdh-light 'wheatgrass 'whiteboard 'wombat)))
+                                                    )))
+;;( % (+ themecount 1) 13)))))
+  
+#+END_SRC
+
+#+RESULTS:
+| lambda | nil | (interactive) | (progn (setq themecount (% (+ themecount 1) 3)) (load-theme (nth themecount (list (quote adwaita) (quote deeper-blue) (quote dichromacy) (quote light-blue) (quote manoj-dark) (quote misterioso) (quote tango) (quote tango-dark) (quote tsdh-dark) (quote tsdh-light) (quote wheatgrass) (quote whiteboard) (quote wombat))))) |
 
 * Add j-mode
 #+BEGIN_SRC emacs-lisp
